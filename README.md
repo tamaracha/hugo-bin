@@ -15,16 +15,16 @@ hugo-bin now supports the [Extended Hugo version](https://github.com/gohugoio/hu
 ### API
 
 ```js
-const { execFile } = require('child_process');
-const hugo = require('hugo-bin');
+const { execFile } = require('child_process')
+const hugo = require('hugo-bin')
 
 execFile(hugo, ['version'], (error, stdout) => {
   if (error) {
-    throw error;
+    throw error
   }
 
-  console.log(stdout);
-});
+  console.log(stdout)
+})
 ```
 
 ### CLI

@@ -7,49 +7,38 @@
   "author": "satoshun00 <shun.sato@fenneclab.com>",
   "license": "MIT",
   "main": "index.js",
-  "bin": {
-    "hugo": "cli.js"
-  },
-  "dependencies": {
-    "bin-wrapper": "^4.1.0",
-    "pkg-conf": "^3.1.0",
-    "rimraf": "^3.0.2",
-    "signale": "^1.4.0"
-  },
-  "devDependencies": {
-    "bin-check": "^4.1.0",
-    "eslint": "^7.25.0",
-    "mocha": "^8.3.2"
-  },
-  "scripts": {
-    "eslint": "eslint .",
-    "mocha": "mocha",
-    "test": "npm run eslint && npm run mocha",
-    "postinstall": "rimraf vendor && node lib/install"
-  },
-  "files": [
-    "lib/*.js",
-    "cli.js",
-    "index.js"
-  ],
   "engines": {
     "node": ">=10"
   },
-  "eslintConfig": {
-    "extends": "eslint:recommended",
-    "env": {
-      "es6": true,
-      "node": true
-    },
-    "rules": {
-      "prefer-destructuring": [
-        "error",
-        {
-          "object": true,
-          "array": false
-        }
-      ],
-      "strict": "error"
-    }
+  "scripts": {
+    "lint": "standard --fix .",
+    "format": "prettier -w .",
+    "install": "binwrap-install",
+    "prepare": "husky install && binwrap-prepare",
+    "test": "binwrap-test",
+    "prepublish": "npm test"
+  },
+  "files": [
+    "index.js",
+    "bin"
+  ],
+  "bin": {
+    "hugo": "bin/hugo"
+  },
+  "dependencies": {
+    "binwrap": "^0.2.3"
+  },
+  "devDependencies": {
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.1",
+    "standard": "^16.0.3",
+    "husky": "^6.0.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier -w",
+      "standard --fix"
+    ],
+    "*.{json,md}": "prettier -w"
   }
 }
